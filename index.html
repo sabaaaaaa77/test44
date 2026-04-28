@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SCORE.GE - Live ანგარიშები</title>
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+   <header class="main-header">
+        <div class="container d-flex justify-content-between align-items-center" style="display: flex; justify-content: space-between; padding: 20px 0;">
+            <a href="index.html" class="logo-area">
+                <img src="Gemini_Generated_Image_lv2pcklv2pcklv2p-removebg-preview.png" alt="Logo" style="height: 40px;">
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-links" style="display: flex; list-style: none; gap: 20px;">
+                    <li><a href="index.html" style="text-decoration: none; color: white;">მთავარი</a></li>
+                    <li><a href="football.html" style="text-decoration: none; color: var(--main-green); font-weight: bold;">ფეხბურთი</a></li>
+                    <li><a href="basketball.html" style="text-decoration: none; color: white;">ლაივები</a></li>
+                    <li><a href="f1.html" style="text-decoration: none; color: white;">F1</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================= MOBILE MENU ================= -->
+
+    <div class="mobile-overlay" id="mobileOverlay">
+
+        <nav class="mobile-nav">
+
+            <a href="#" class="mobile-nav-item">მთავარი</a>
+            <a href="#" class="mobile-nav-item">ლაივები</a>
+            <a href="#" class="mobile-nav-item">ცხრილები</a>
+            <a href="#" class="mobile-nav-item">სიახლეები</a>
+
+        </nav>
+
+    </div>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="main-hero container">
+
+        <div class="hero-overlay">
+
+            <div class="hero-text-content">
+
+                <span class="hero-badge">
+                    GEORGIAN SPORTS HUB
+                </span>
+
+                <h1>
+                    სპორტული <br>
+                    სიახლე ერთ სივრცეში
+                </h1>
+
+                <p>
+                    ლაივ ანგარიშები, სატურნირო ცხრილები და ექსკლუზიური სტატისტიკა.
+                    
+                </p>
+
+               
+
+            </div>
+
+            <div class="hero-image-decor"></div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        <div class="container">
+
+            <!-- SPORTS -->
+
+            <section class="sports-selector">
+
+                <a href="football.html" class="category-link">
+
+                    <div class="category-card active">
+
+                        <div class="icon-box">
+
+                            <img src="https://img.icons8.com/ios-filled/100/00ff85/football2.png"
+                                alt="football">
+
+                        </div>
+
+                        <h3>ფეხბურთი</h3>
+
+                    </div>
+
+                </a>
+
+                <a href="UFC.html" class="category-link">
+
+                    <div class="category-card">
+
+                        <div class="icon-box">
+
+                            <img src="https://img.icons8.com/ios-filled/100/ffffff/rugby.png"
+                                alt="rugby">
+
+                        </div>
+
+                        <h3>UFC</h3>
+
+                    </div>
+
+                </a>
+
+            </section>
+
+            <!-- SEARCH -->
+
+            <div class="search-section">
+
+                <div class="search-container">
+
+                    <input type="text"
+                        id="mainSearch"
+                        placeholder="მოძებნე გუნდი...">
+
+                    <button onclick="handleSearch()">
+                        სერჩი
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- FOOTBALL PAGE -->
+
+            <section id="football-page" class="sport-content">
+
+                <div id="live-matches"></div>
+
+            </section>
+
+            <!-- DETAILS -->
+
+            <section id="details-page"
+                class="sport-content"
+                style="display:none;">
+
+                <button onclick="closeDetails()" class="back-btn">
+
+                    ← უკან დაბრუნება
+
+                </button>
+
+                <div id="details-container"></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- ================= MATCHES ================= -->
+
+    <main class="main-content">
+
+        <div class="container py-4">
+
+            <h1 class="page-title">
+                მიმდინარე მატჩები
+            </h1>
+
+            <div id="matches-container" class="matches-grid">
+
+                <div class="loader text-center">
+                    იტვირთება...
+                </div>
+
+            </div>
+
+            <div id="btn-wrapper"
+                style="
+                    text-align:center;
+                    margin:20px 0;
+                    width:100%;
+                ">
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================= STANDINGS ================= -->
+
+    <div class="standings-container">
+
+        <h2>სატურნირო ცხრილი</h2>
+
+        <div class="league-tabs">
+
+            <button onclick="changeLeague('PL')"
+                class="tab-btn active">
+                PL
+            </button>
+
+            <button onclick="changeLeague('PD')"
+                class="tab-btn">
+                La Liga
+            </button>
+
+            <button onclick="changeLeague('SA')"
+                class="tab-btn">
+                Serie A
+            </button>
+
+            <button onclick="changeLeague('BL1')"
+                class="tab-btn">
+                Bundesliga
+            </button>
+
+            <button onclick="changeLeague('FL1')"
+                class="tab-btn">
+                Ligue 1
+            </button>
+
+        </div>
+
+        <div class="table-wrapper" id="tableWrapper">
+
+            <table id="standings-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>გუნდი</th>
+                        <th>თ</th>
+                        <th>მ</th>
+                        <th>ფ</th>
+                        <th>წ</th>
+                        <th>ქ</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="standings-body"></tbody>
+
+            </table>
+
+        </div>
+
+        <button id="seeMoreBtn" class="see-more-btn">
+            SEE MORE
+        </button>
+
+    </div>
+
+    <!-- ================= BRAND ================= -->
+
+    <section class="brand-display container">
+
+        <div class="brand-content">
+
+            <div class="logo-wrapper">
+
+                <img src="Gemini_Generated_Image_lv2pcklv2pcklv2p-removebg-preview.png"
+                    alt="Saba Sports Logo"
+                    class="big-main-logo">
+
+                <div class="logo-glow"></div>
+
+            </div>
+
+            <div class="brand-text">
+
+                <h2>
+                    SCORE
+                    <span class="highlight">SPORTS</span>
+                </h2>
+
+                <div class="brand-line"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FACT ================= -->
+
+    <section class="fact-card">
+
+        <div class="fact-icon">💡</div>
+
+        <div class="fact-info">
+
+            <h4>იცოდით თუ არა?</h4>
+
+            <p id="fact-display">
+                ფეხბურთის ისტორიაში ყველაზე სწრაფი გოლი
+                მე-2 წამზეა გატანილი.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ================= HIGHLIGHTS ================= -->
+
+    <section class="highlights-container">
+
+        <h2 class="section-title">
+            ⚽ ბოლო მატჩების მიმოხილვა
+        </h2>
+
+        <div id="highlights-grid" class="highlights-grid">
+
+            <div class="loading">
+                იტვირთება ვიდეოები...
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="modern-footer">
+
+        <div class="footer-content">
+
+            <div class="footer-info">
+
+                <img src="Gemini_Generated_Image_lv2pcklv2pcklv2p-removebg-preview.png"
+                    class="footer-logo">
+
+                <p>
+                    საუკეთესო სპორტული პლატფორმა საქართველოში.
+                    თვალი ადევნე ყველა მატჩს რეალურ დროში.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <h4>ლიგები</h4>
+
+                <a href="#">Premier League</a>
+                <a href="#">La Liga</a>
+                <a href="#">Serie A</a>
+
+            </div>
+
+            <div class="footer-social">
+
+                <h4>მოგვყევით</h4>
+
+                <div class="social-icons">
+
+                    <a href="#">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 SCORE.GE.
+                ყველა უფლება დაცულია.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
